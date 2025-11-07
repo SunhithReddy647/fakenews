@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict - Fake News Detector</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Fake News Detector</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/predict">Predict</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <h1>Analyze an Article</h1>
+            <p>Paste the full text of a news article below to get a prediction on its authenticity.</p>
+            <form action="/predict" method="post">
+                <textarea name="message" placeholder="Enter the news article text here..."></textarea>
+                <br>
+                <input type="submit" value="Analyze">
+            </form>
+            {% if prediction %}
+            <div class="result">
+                <h2>Prediction Result</h2>
+                <p>The article is likely to be: <strong>{{ prediction[0] }}</strong></p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</body>
+</html>

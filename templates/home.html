@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Fake News Detector</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/predict">Predict</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="showcase">
+        <div class="container">
+            <h1>Unmask the Truth</h1>
+            <p>Your shield against misinformation. Enter a news article to verify its authenticity.</p>
+        </div>
+    </section>
+
+    <section class="main">
+        <div class="container">
+            <p>Welcome to the Fake News Detector. In an age of information overload, it's crucial to distinguish fact from fiction. This tool is designed to help you do just that. Navigate to the <a href="/predict">Predict</a> page to analyze an article, or visit the <a href="/about">About</a> page to learn more about our mission.</p>
+        </div>
+    </section>
+
+    <section class="cons-section">
+        <div class="container">
+            <h2>The Dangers of Fake News</h2>
+            <div class="cons-grid">
+                <div class="con-item">
+                    <h3>Erodes Trust</h3>
+                    <p>Fake news undermines trust in legitimate news sources and institutions, making it difficult for the public to stay informed.</p>
+                </div>
+                <div class="con-item">
+                    <h3>Polarizes Society</h3>
+                    <p>By spreading biased and false information, fake news can deepen social and political divisions.</p>
+                </div>
+                <div class="con-item">
+                    <h3>Harms Individuals</h3>
+                    <p>Misinformation can lead to harmful decisions, from financial scams to health risks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

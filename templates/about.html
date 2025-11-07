@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - Fake News Detector</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Fake News Detector</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/predict">Predict</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <h1>About Our Mission</h1>
+            <p>We are dedicated to combating the spread of misinformation. Our fake news detector is a powerful tool that leverages cutting-edge machine learning to provide users with a reliable way to assess the credibility of news articles. We believe in a more informed public, and this project is our contribution to that cause.</p>
+            
+            <h2>The Technology</h2>
+            <p>The core of our detector is a <strong>Random Forest Classifier</strong>, a robust machine learning model known for its accuracy. The model has been trained on a comprehensive dataset containing thousands of both real and fake news articles. The text is processed using a <strong>TF-IDF Vectorizer</strong>, which converts the words into a numerical format that the model can understand.</p>
+            
+            <h2>How It Works</h2>
+            <p>When you submit an article, it goes through the same preprocessing pipeline as the training data. The TF-IDF Vectorizer transforms the text, and then the Random Forest model makes a prediction based on the patterns it learned during training. The result is a simple, clear indication of whether the article is likely to be real or fake.</p>
+        </div>
+    </section>
+</body>
+</html>
