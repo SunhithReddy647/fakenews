@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Predict - Fake News Detector</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Article - Fake News Detector</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <div id="branding">
                 <h1>Fake News Detector</h1>
@@ -14,7 +16,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="/predict">Predict</a></li>
+                    <li><a href="/predict" class="active">Predict</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,20 +24,96 @@
 
     <section class="main">
         <div class="container">
-            <h1>Analyze an Article</h1>
-            <p>Paste the full text of a news article below to get a prediction on its authenticity.</p>
-            <form action="/predict" method="post">
-                <textarea name="message" placeholder="Enter the news article text here..."></textarea>
-                <br>
-                <input type="submit" value="Analyze">
-            </form>
+            <div class="form-container">
+                <h1>Analyze an Article</h1>
+                <p>Paste the complete text of a news article below to receive an AI-powered authenticity assessment. Our machine learning model will analyze the content and provide a prediction on its credibility.</p>
+                <form action="/predict" method="post" id="analyzeForm">
+                    <textarea
+                        name="message"
+                        id="articleText"
+                        placeholder="Enter the news article text here... Include the full article for best results."
+                        required
+                    ></textarea>
+                    <div class="button-wrapper">
+                        <input type="submit" value="Analyze Article" id="submitBtn">
+                        <span id="charCount" style="color: var(--text-muted); font-size: 14px;"></span>
+                    </div>
+                </form>
+            </div>
+
             {% if prediction %}
-            <div class="result">
-                <h2>Prediction Result</h2>
-                <p>The article is likely to be: <strong>{{ prediction[0] }}</strong></p>
+            <div class="result" id="result">
+                <h2>Analysis Complete</h2>
+                <p>Based on our AI analysis, this article is predicted to be:</p>
+                {% if prediction[0] == 'fake' %}
+                <strong class="fake">FAKE NEWS</strong>
+                <p style="margin-top: 16px; font-size: 16px;">Our model has identified patterns commonly associated with misinformation. Exercise caution and verify this content through multiple trusted sources.</p>
+                {% else %}
+                <strong class="true">LIKELY AUTHENTIC</strong>
+                <p style="margin-top: 16px; font-size: 16px;">Our model suggests this article exhibits characteristics of legitimate journalism. However, always verify important information through multiple sources.</p>
+                {% endif %}
             </div>
             {% endif %}
+
+            <div class="intro-section" style="margin-top: 48px;">
+                <h2>Tips for Best Results</h2>
+                <div class="feature-grid" style="margin-top: 32px;">
+                    <div class="feature-card">
+                        <div class="icon">📝</div>
+                        <h3>Complete Text</h3>
+                        <p>Include the full article text for the most accurate analysis. More content provides better context for the AI model.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔍</div>
+                        <h3>Multiple Sources</h3>
+                        <p>Always cross-reference with multiple credible sources. Our tool is one of many resources for verifying information.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🧠</div>
+                        <h3>Critical Thinking</h3>
+                        <p>Use your judgment alongside our AI analysis. Consider the source, author credentials, and publication reputation.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <script>
+        const header = document.getElementById('header');
+        const textarea = document.getElementById('articleText');
+        const charCount = document.getElementById('charCount');
+        const form = document.getElementById('analyzeForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        textarea.addEventListener('input', () => {
+            const length = textarea.value.length;
+            const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            charCount.textContent = `${length} characters, ${words} words`;
+        });
+
+        form.addEventListener('submit', (e) => {
+            if (textarea.value.trim().length < 50) {
+                e.preventDefault();
+                alert('Please enter at least 50 characters for meaningful analysis.');
+                return;
+            }
+            submitBtn.value = 'Analyzing...';
+            submitBtn.disabled = true;
+        });
+
+        {% if prediction %}
+        setTimeout(() => {
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        {% endif %}
+    </script>
 </body>
 </html>

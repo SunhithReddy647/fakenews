@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fake News Detector</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector - AI-Powered Truth Verification</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <div id="branding">
                 <h1>Fake News Detector</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/" class="active">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/predict">Predict</a></li>
                 </ul>
@@ -23,34 +25,72 @@
     <section class="showcase">
         <div class="container">
             <h1>Unmask the Truth</h1>
-            <p>Your shield against misinformation. Enter a news article to verify its authenticity.</p>
+            <p>AI-powered verification to combat misinformation. Analyze news articles instantly with machine learning precision.</p>
+            <a href="/predict" class="cta-button">Start Analyzing</a>
         </div>
     </section>
 
     <section class="main">
         <div class="container">
-            <p>Welcome to the Fake News Detector. In an age of information overload, it's crucial to distinguish fact from fiction. This tool is designed to help you do just that. Navigate to the <a href="/predict">Predict</a> page to analyze an article, or visit the <a href="/about">About</a> page to learn more about our mission.</p>
+            <div class="intro-section">
+                <h1>Combat Misinformation with AI</h1>
+                <p>In an era of digital information overload, distinguishing fact from fiction has never been more critical. Our advanced fake news detector leverages state-of-the-art machine learning algorithms to analyze news articles and provide instant credibility assessments.</p>
+                <p>Whether you're a journalist, researcher, or concerned citizen, our tool empowers you to make informed decisions about the content you consume and share.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="number">1</div>
+                    <h3>Submit Article</h3>
+                    <p>Paste the full text of any news article into our analysis tool. Our system accepts articles of any length.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="number">2</div>
+                    <h3>AI Analysis</h3>
+                    <p>Our Random Forest classifier processes the text using advanced TF-IDF vectorization and pattern recognition.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="number">3</div>
+                    <h3>Get Results</h3>
+                    <p>Receive an instant, clear prediction on the article's authenticity with confidence indicators.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="cons-section">
         <div class="container">
-            <h2>The Dangers of Fake News</h2>
+            <h2>The Impact of Fake News</h2>
+            <p class="subtitle">Understanding the consequences of misinformation helps us stay vigilant and informed.</p>
             <div class="cons-grid">
                 <div class="con-item">
+                    <div class="icon">⚠</div>
                     <h3>Erodes Trust</h3>
-                    <p>Fake news undermines trust in legitimate news sources and institutions, making it difficult for the public to stay informed.</p>
+                    <p>Fake news undermines trust in legitimate news sources and institutions, making it increasingly difficult for the public to stay accurately informed and distinguish credible journalism.</p>
                 </div>
                 <div class="con-item">
+                    <div class="icon">⚖</div>
                     <h3>Polarizes Society</h3>
-                    <p>By spreading biased and false information, fake news can deepen social and political divisions.</p>
+                    <p>By spreading biased and false information, fake news amplifies social and political divisions, creating echo chambers and hindering constructive dialogue.</p>
                 </div>
                 <div class="con-item">
+                    <div class="icon">⛔</div>
                     <h3>Harms Individuals</h3>
-                    <p>Misinformation can lead to harmful decisions, from financial scams to health risks.</p>
+                    <p>Misinformation can lead to harmful decisions affecting health, finances, and safety, from medical scams to investment fraud and beyond.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
